@@ -12,5 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require jquery.ui.datepicker
+//= require jquery.ui.datepicker-zh-CN
+// Loads all Bootstrap javascripts
+//= require bootstrap
+//= require bootstrap-select
+//= require bootstrap/alert
+//= require bootstrap/dropdown
 //= require_tree .
+

@@ -1,0 +1,16 @@
+<h2>Edit</h2>
+
+<%= form_for(current_user, url: user_path, html: { method: :put }) do |f| %>
+
+  <div><%= f.label '名字' %><br />
+  <%= f.text_field :name, autofocus: true %></div>
+
+  <div><%= f.label '电话' %><br />
+  <%= f.text_field :phone, autofocus: true %></div>
+
+  <div><%= f.submit "更新" %></div>
+<% end %>
+
+<h3>删除账号</h3>
+
+<%= link_to "返回", :back %>

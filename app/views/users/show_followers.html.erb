@@ -1,0 +1,22 @@
+<h3><% provide(:title, @title) %></h3>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1><%= @user.name %></h1>
+      <span><%= link_to "查看我的资料", @user %></span>
+      <span><b>Photographs:</b> <%= @user.photos.count %></span>
+    </section>
+    <section>
+      <%= render 'shared/stats' %>
+  </aside>
+  <div class="span8">
+    <h3><%= @title %></h3>
+    <% if @users.any? %>
+      <ul class="users">
+        <% @users.each do |u| %>
+          <li><%= link_to u.name, u %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>

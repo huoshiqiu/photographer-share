@@ -8,6 +8,10 @@ PhotographerShare::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'page#home'
 
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
 
 end

@@ -10,20 +10,21 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+  <div><%= f.label '新密码'%> <i>(如果你不想改，就留空吧)</i><br />
     <%= f.password_field :password, autocomplete: "off" %></div>
 
-  <div><%= f.label :password_confirmation %><br />
+  <div><%= f.label '新密码确认' %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+  <div><%= f.label '旧密码' %> <i>(我们需要确定你的密码来保存更改)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %></div>
 
   <div><%= f.submit "更新" %></div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<h3>删除账号</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p>不爽? <%= button_to "删除", registration_path(resource_name),
+data: { confirm: "你确定?" }, method: :delete %></p>
 
-<%= link_to "Back", :back %>
+<%= link_to "返回", :back %>

@@ -5,7 +5,7 @@ class CreatePhotos < ActiveRecord::Migration
       t.references :user
 
       t.timestamps
-      t.index(:user_id, unique: true )
+      t.index(:user_id)
     end
   end
 end

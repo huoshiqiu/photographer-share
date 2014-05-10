@@ -1,0 +1,5 @@
+<%= form_for(current_user.favourites.build(photo_id: photo.id),
+             remote: true) do |f| %>
+  <div><%= f.hidden_field :photo_id %></div>
+  <%= f.submit "赞", class: "btn btn-success" %>
+<% end %>

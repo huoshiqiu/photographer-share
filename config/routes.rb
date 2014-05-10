@@ -14,4 +14,10 @@ PhotographerShare::Application.routes.draw do
     end
   end
 
+  resources :photos do
+    resources :comments
+  end
+  resources :relationships, only: [:create, :destroy]
+  resources :favourites, only: [:create, :destroy]
+
 end

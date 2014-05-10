@@ -4,16 +4,16 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
+  # storage :file
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "hsq/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -32,8 +32,16 @@ class PhotoUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process :scale => [50, 50]
+  version :show_small_thumb do
+    process :resize_to_fill => [385, 255]
+  end
+
+  version :show_big_thumb do
+    process :resize_to_fit => [1000, 1000]
+  end
+
+  # version :index_small_thumb do
+  #   process :resize_to_fill => [385, 255], :convert => 'jpg'
   # end
 
   # Add a white list of extensions which are allowed to be uploaded.

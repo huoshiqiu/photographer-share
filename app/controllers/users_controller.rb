@@ -2,6 +2,16 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def show
+    @tags = Tag.all
+    @user = User.find(params[:id])
+
+    if @user == current_user
+      @photos = current_user.photos.all
+      @fans_photos = current_user.feed
+      @photo = current_user.photos.new
+    else
+      @photos = @user.photos.all
+    end
   end
 
   def edit

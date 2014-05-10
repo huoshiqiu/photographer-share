@@ -1,3 +1,128 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.uploadButton input {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  z-index: 2;
+  opacity: 0;
+  width: 100%;
+  height: 100% !important;
+  background-color: yellow;
+  display: block;
+}
+
+.uploadButton {
+  position: relative;
+  border: 2px dashed #094e7e;
+  border-radius: 10px;
+  background: image-url('add-button.png') no-repeat center 30%;
+  width: 100%;
+
+  p {
+    text-align: center;
+    font-size: 16px;
+    color: #094e7e;
+  }
+}
+
+button.addButton {
+  background-position: center 45%;
+  margin: 0;
+
+  p {
+    padding-top: 235px;
+  }
+}
+
+.show-photo-list {
+  margin-left: 20%;
+}
+
+.roomInfo {
+  height: 200px;
+  padding: 0 15px;
+}
+
+.photoButtons {
+  text-align: center;
+  overflow: hidden;
+  padding: 4px 0;
+  border-top: 1px solid #d5d5d5;
+  border-radius: 4px 4px 10px 10px;
+  background: linear-gradient(to top, #efefef, #fffefe);
+
+  a {
+    float: left;
+    display: block;
+    height: 40px;
+  }
+}
+
+
+.editButton  {
+  width: 49%;
+  border-right: 1px solid #d5d5d5;
+  background: image-url('edit-button-icon.png') no-repeat center center;
+}
+.photoButtons .deleteButton {
+  width: 50%;
+  background: image-url('delete-button-icon.png') no-repeat center center;
+}
+
+.onePhoto {
+  border-radius: 10px;
+  border: 1px solid #d5d5d5;
+  font-size: 16px;
+  padding: 0;
+  box-shadow: 3px 3px 3px #d5d5d5;
+}
+.onePhoto p {
+  margin-bottom: 6px;
+}
+.onePhoto h4 {
+  font-size: 20px;
+  margin: 15px;
+  color: #006190;
+}
+
+.modal-dialog {
+  width: 1050px;
+}
+
+/*other_photo_list*/
+  .OtherPhotosButtons {
+    text-align: center;
+    overflow: hidden;
+    padding: 7px 0;
+    border-top: 1px solid #d5d5d5;
+    border-radius: 4px 4px 10px 10px;
+    background: linear-gradient(to top, #efefef, #fffefe);
+
+    .btn {
+      width: 20%;
+    }
+
+  }
+
+  .OtherPhotosButtons a {
+    font-size: 20px;
+    padding-top: 8px;
+    float: left;
+    display: block;
+    height: 40px;
+    color: #2E7FB6;
+  }
+
+
+/*  .favButton  {
+    width: 50%;
+    border-right: 1px solid #d5d5d5;
+  }*/
+
+  .commentButton {
+    width: 100%;
+  /*  border-right: 1px solid #d5d5d5;*/
+  }

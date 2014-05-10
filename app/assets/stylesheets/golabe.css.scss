@@ -169,7 +169,7 @@ aside {
   }
 }
 
-.customer_avatars {
+.user_avatars {
   overflow: auto;
   margin-top: 10px;
   .gravatar {
@@ -206,7 +206,7 @@ input {
 
  /* Customers index */
 
- .customers {
+ .users {
    list-style: none;
    margin: 0;
    li {
@@ -221,7 +221,7 @@ input {
 
  /* microposts */
 
- .microposts {
+ .users {
    list-style: none;
    margin: 10px 0 0 0;
 
@@ -244,26 +244,5 @@ input {
    textarea {
      height: 100px;
      margin-bottom: 5px;
-   }
- }
-
- .stats {
-   overflow: auto;
-   a {
-     float: left;
-     padding: 0 10px;
-     border-left: 1px solid $grayLighter;
-     color: gray;
-     &:first-child {
-       padding-left: 0;
-       border: 0;
-     }
-     &:hover {
-       text-decoration: none;
-       color: blue;
-     }
-   }
-   strong {
-     display: block;
    }
  }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140507202501) do
+ActiveRecord::Schema.define(version: 20140509232743) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -39,16 +39,37 @@ ActiveRecord::Schema.define(version: 20140507202501) do
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["user_id", "photo_id"], name: "index_comments_on_user_id_and_photo_id", unique: true, using: :btree
+  add_index "comments", ["user_id", "photo_id"], name: "index_comments_on_user_id_and_photo_id", using: :btree
+
+  create_table "favourites", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "photo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "favourites", ["photo_id"], name: "index_favourites_on_photo_id", using: :btree
+  add_index "favourites", ["user_id", "photo_id"], name: "index_favourites_on_user_id_and_photo_id", unique: true, using: :btree
+  add_index "favourites", ["user_id"], name: "index_favourites_on_user_id", using: :btree
 
   create_table "photos", force: true do |t|
     t.string   "image_uid"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "description"
+    t.integer  "score",       default: 0
   end
 
-  add_index "photos", ["user_id"], name: "index_photos_on_user_id", unique: true, using: :btree
+  add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree
+
+  create_table "photos_tags", force: true do |t|
+    t.integer "tag_id"
+    t.integer "photo_id"
+  end
+
+  add_index "photos_tags", ["photo_id"], name: "index_photos_tags_on_photo_id", using: :btree
+  add_index "photos_tags", ["tag_id"], name: "index_photos_tags_on_tag_id", using: :btree
 
   create_table "rails_admin_histories", force: true do |t|
     t.text     "message"
@@ -73,6 +94,12 @@ ActiveRecord::Schema.define(version: 20140507202501) do
   add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
   add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
+
+  create_table "tags", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

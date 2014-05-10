@@ -2,25 +2,35 @@
 <div class="row">
   <aside class="span4">
     <table class="user_profile">
-      <thead><tr><td>账号：<%=  current_user.email %></td></tr></thead>
+      <thead><tr><td>账号：<%=  @user.email %></td></tr></thead>
       <tbody>
         <tr>
-          <td>名字：<%= current_user.name == '' ? '这家伙很懒，神马都没留下' : current_user.name %></td>
+          <td>名字：<%= @user.name == '' ? '这家伙很懒，神马都没留下' : @user.name %></td>
         </tr>
         <tr>
-          <td>手机：<%= current_user.phone == '' ? '请到设置界面填写你的手机号' : current_user.phone %></td>
+          <td>手机：<%= @user.phone == '' ? '请到设置界面填写你的手机号' : @user.phone %></td>
         </tr>
-        <tr>
-          <td>登录次数：<%= current_user.sign_in_count %></td>
-        </tr>
-        <tr>
-          <td>上次登录：<%= current_user.last_sign_in_at.strftime("%Y-%m-%d %H:%M") %></td>
-        </tr>
+        <%  if @user == current_user %>
+          <tr>
+            <td>登录次数：<%= @user.sign_in_count %></td>
+          </tr>
+          <tr>
+            <td>上次登录：<%= @user.last_sign_in_at.strftime("%Y-%m-%d %H:%M") %></td>
+          </tr>
+        <% end %>
+        <tr><td><%= render 'follow_form' %></td></tr>
       </tbody>
     </table>
     <section>
         <%= render 'shared/stats' %>
     </section>
   </aside>
+
+  <% if current_user == @user %>
+    <%= render :partial => "own_photo_list", :locals => { photo: @photo, photos: @photos, fans_photos: @fans_photos, tags: @tags } %>
+  <% else %>
+    <%= render :partial => "other_photo_list", :locals => { photos: @photos } %>
+  <% end %>
+
 </div>
 

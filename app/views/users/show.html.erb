@@ -8,7 +8,7 @@
           <td>名字：<%= @user.name == '' ? '这家伙很懒，神马都没留下' : @user.name %></td>
         </tr>
         <tr>
-          <td>手机：<%= @user.phone == '' ? '请到设置界面填写你的手机号' : @user.phone %></td>
+          <td>手机：<%= @user.phone == '' ? '这家伙很懒，神马都没留下' : @user.phone %></td>
         </tr>
         <%  if @user == current_user %>
           <tr>
@@ -31,6 +31,5 @@
   <% else %>
     <%= render :partial => "other_photo_list", :locals => { photos: @photos } %>
   <% end %>
-
 </div>
 

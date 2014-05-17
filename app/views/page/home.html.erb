@@ -1,0 +1,28 @@
+<h3>最近更新图片：</h3>
+<div class="myPhotoCarousel">
+  <% @photos.each do |photo| %>
+    <div>
+      <%= image_tag photo.image_uid.url(:show_small_thumb) %>
+    </div>
+  <% end %>
+</div>
+
+<div class='row'>
+  <div class="col-lg-6">
+    <div class="input-group">
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">已有标签 <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+        <% @tags.each do |tag| %>
+          <li><a href="<%= tags_path(tag_name: tag.name) %>"><%= tag.name %></a></li>
+        <% end %>
+        </ul>
+      </div><!-- /btn-group -->
+      <%= form_tag(tags_path, method: 'get') do %>
+        <input type="text" name='tag_name' class="form-control" onchange='this.form.submit()'>
+      <% end %>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div>
+<h4><%= @tags.first.name %></h4>
+<%= render :partial => "users/photos_show", :locals => { photos: @photos } %>

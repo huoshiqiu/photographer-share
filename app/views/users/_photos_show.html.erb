@@ -1,0 +1,66 @@
+<div class="row">
+  <% photos.each do |p| %>
+    <div class="col-xs-6 .col-md-6">
+      <div class="onePhoto thumbnail">
+        <h4><%= p.user.name %></h4>
+          <%=image_tag p.image_uid.url(:show_small_thumb) %>
+
+        <div class="OtherPhotosButtons">
+<!--                    <a href="#" data-toggle="modal" data-target="#fav" data-type="edit" class="favButton">赞</a> -->
+        <% if user_signed_in? && current_user.following?(p.user) %>
+          <% if current_user.favourite?(p) %>
+            <%= render partial: 'unfavourite', locals: { photo: p } %>
+          <% else %>
+            <%= render partial: 'favourite', locals: { photo: p } %>
+          <% end %>
+          <a href="#" data-toggle="modal" data-target="#show-<%= p.id %>" data-type="edit" class="commentButton">评论</a>
+        <% else %>
+          <a href="#" data-toggle="modal" data-target="#show-<%= p.id %>" data-type="edit" class="commentButton">查看大图</a>
+        <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- 模态框 -->
+    <div class="modal fade" id="show-<%=p.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">图片详情</h4>
+          </div>
+          <div class="modal-body">
+            <div><%=image_tag p.image_uid.url(:show_big_thumb) %></div>
+            <label>图片描述:</label>
+            <% unless p.description == '' %>
+              <div class="des"><%= p.description %></div>
+            <% end %>
+            <div></div>
+            <% if user_signed_in? && current_user.following?(p.user) %>
+            <% comments = p.comments.all %>
+            <% unless comments.blank? %>
+              <div class="comment">
+                <% comments.each do |c| %>
+                  <div class="oneComment">
+                    <span><%= c.user.name %>说:</span>
+                    <span><%= c.content %></span>
+                  </div>
+                <% end %>
+              </div>
+              <% end %>
+              <%= form_for(p.comments.new, url: photo_comments_path(photo_id: p.id), method: 'post') do |f| %>
+                <div>
+                  <%= f.label '添加新评论' %>
+                  <%= f.text_area :content, class: "form-control" %>
+                </div>
+                <div>
+                  <%= f.submit "保存", class: "btn btn-default"%>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

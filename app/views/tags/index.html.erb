@@ -1,0 +1,40 @@
+<% if @special_tag_photos.blank? %>
+  <h4>sorry! 没有<%= @tag_name %>这个标签的图片</h4>
+  <div><%= link_to 'Back', root_url %></div>
+<% else %>
+  <h4><%= @tag.name %></h4>
+  <div class='row'>
+    <% @special_tag_photos.each do |p| %>
+      <div class="col-xs-4 .col-md-6">
+        <div class="onePhoto thumbnail">
+          <h4><%= link_to "#{p.user.name}", user_path(id: p.user.id) %></h4>
+            <%=image_tag p.image_uid.url(:show_small_thumb) %>
+
+          <div class="OtherPhotosButtons">
+            <a href="#" data-toggle="modal" data-target="#<%= p.id %>" data-type="edit" class="commentButton">查看大图</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 模态框 -->
+      <div class="modal fade" id="<%=p.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="myModalLabel">图片详情</h4>
+            </div>
+            <div class="modal-body">
+              <div><%=image_tag p.image_uid.url(:show_big_thumb) %></div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- < -->
+    <% end %>
+
+  </div>
+<% end %>

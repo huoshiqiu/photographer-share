@@ -14,6 +14,7 @@ gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'bootstrap-select-rails'
 gem 'kaminari'
+gem 'slick_rails'
 
 # backend admin
 gem 'rails_admin'

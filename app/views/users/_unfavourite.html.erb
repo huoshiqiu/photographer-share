@@ -1,5 +1,5 @@
 <%= form_for(current_user.favourites.find_by(photo_id: photo.id),
              html: { method: :delete },
              remote: true) do |f| %>
-  <%= f.submit "取消赞", class: "btn btn-danger" %>
+  <%= f.submit "取消赞", class: "btn btn-danger", id: 'unfavourite' %>
 <% end %>

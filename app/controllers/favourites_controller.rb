@@ -5,7 +5,7 @@ class FavouritesController < ApplicationController
     @photo = Photo.find(params[:favourite][:photo_id])
     current_user.favourite!(@photo)
     respond_to do |format|
-      format.html { redirect_to current_user}
+      # format.html { redirect_to current_user}
       format.js
     end
   end
@@ -14,7 +14,7 @@ class FavouritesController < ApplicationController
     @photo = Favourite.find(params[:id]).photo
     current_user.unfavourite(@photo)
     respond_to do |format|
-      format.html { redirect_to current_user }
+      # format.html { redirect_to current_user }
       format.js
     end
   end

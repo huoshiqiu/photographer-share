@@ -19,5 +19,6 @@ PhotographerShare::Application.routes.draw do
   end
   resources :relationships, only: [:create, :destroy]
   resources :favourites, only: [:create, :destroy]
+  resources :tags, only: [:index]
 
 end

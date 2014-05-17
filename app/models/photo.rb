@@ -2,7 +2,7 @@ class Photo < ActiveRecord::Base
   mount_uploader :image_uid, PhotoUploader
 
   has_and_belongs_to_many :tags
-  belongs_to :user, counter_cache: true
+  belongs_to :user
   has_many :comments
   has_many :favourites, dependent: :destroy
   has_many :favourited_by_users, through: :favourites, source: :user

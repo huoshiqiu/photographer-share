@@ -126,3 +126,17 @@ button.addButton {
     width: 100%;
   /*  border-right: 1px solid #d5d5d5;*/
   }
+
+  .comment {
+    border-radius: 4px;
+    display: block;
+    border: 1px solid #cccccc;
+    background-color: #F0F0F0;
+    margin-top: 20px;
+  }
+
+  .oneComment {
+    .name {
+      margin-right: 20px;
+    }
+  }

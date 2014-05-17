@@ -19,5 +19,6 @@
 //= require bootstrap-select
 //= require bootstrap/alert
 //= require bootstrap/dropdown
+//= require slick
 //= require_tree .
 

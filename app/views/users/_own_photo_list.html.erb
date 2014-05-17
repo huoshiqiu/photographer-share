@@ -23,18 +23,18 @@
         <% photos.each do |p| %>
           <div class="col-xs-6 .col-md-12">
             <div class="onePhoto thumbnail">
-              <h4><%= p.user.name %></h4>
+              <h4>&nbsp;</h4>
                 <%=image_tag p.image_uid.url(:show_small_thumb) %>
 
               <div class="photoButtons">
-                <a href="#" data-toggle="modal" data-target="#<%= p.id %>" data-type="edit" class="editButton"></a>
+                <a href="#" data-toggle="modal" data-target="#own-<%= p.id %>" data-type="edit" class="editButton"></a>
                 <%= link_to '', photo_path(id: p.id), method: :delete, data: {confirm: '确定删除这张图片?'}, class: "deleteButton" %>
               </div>
             </div>
           </div>
 
           <!-- 模态框 -->
-          <div class="modal fade" id="<%=p.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+          <div class="modal fade" id="own-<%=p.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -78,56 +78,7 @@
     </div>
     <div id="collapseTwo" class="panel-collapse collapse">
       <div class="panel-body">
-        <div class="row">
-           <% fans_photos.each do |fp| %>
-             <div class="col-xs-6 .col-md-6">
-               <div class="onePhoto thumbnail">
-                 <h4><%= fp.user.name %></h4>
-                   <%=image_tag fp.image_uid.url(:show_small_thumb) %>
-
-                 <div class="OtherPhotosButtons">
-<!--                    <a href="#" data-toggle="modal" data-target="#fav" data-type="edit" class="favButton">赞</a> -->
-                    <% if current_user.favourite?(fp) %>
-                      <%= render partial: 'unfavourite', locals: { photo: fp } %>
-                    <% else %>
-                      <%= render partial: 'favourite', locals: { photo: fp } %>
-                    <% end %>
-                   <a href="#" data-toggle="modal" data-target="#<%= fp.id %>" data-type="edit" class="commentButton">评论</a>
-                 </div>
-               </div>
-             </div>
-
-             <!-- 模态框 -->
-             <div class="modal fade" id="<%=fp.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
-               <div class="modal-dialog">
-                 <div class="modal-content">
-                   <div class="modal-header">
-                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                     <h4 class="modal-title" id="myModalLabel">图片详情</h4>
-                   </div>
-                   <div class="modal-body">
-                     <div><%=image_tag fp.image_uid.url(:show_big_thumb) %></div>
-                     <% comments = fp.comments.all %>
-                      <% unless comments.blank? %>
-                        <% comments.each do |c| %>
-                          <div><%= c.content %>by<%= c.user.name %></div>
-                        <% end %>
-                      <% end %>
-                     <%= form_for(fp.comments.new, url: photo_comments_path(photo_id: fp.id), method: 'post') do |f| %>
-                       <div>
-                         <%= f.label '添加评论' %>
-                         <%= f.text_area :content, class: "form-control" %>
-                       </div>
-                       <div>
-                         <%= f.submit "保存", class: "btn btn-default"%>
-                       </div>
-                       <% end %>
-                   </div>
-                 </div>
-               </div>
-             </div>
-           <% end %>
-         </div>
+        <%= render :partial => "photos_show", :locals => { photos: @fans_photos } %>
       </div>
     </div>
   </div>

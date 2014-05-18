@@ -1,0 +1,8 @@
+<% if @recommend_photos.blank? %>
+  <h4>sorry! 没有被推荐的图片</h4>
+  <div><%= link_to 'Back', root_url %></div>
+<% else %>
+  <h4>点赞最多的18张图片</h4>
+  <%= render :partial => "shared/index_photos", :locals => {
+     photos: @recommend_photos } %>
+<% end %>

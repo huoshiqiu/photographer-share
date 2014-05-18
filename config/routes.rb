@@ -12,6 +12,10 @@ PhotographerShare::Application.routes.draw do
     member do
       get :following, :followers
     end
+
+    collection do
+      get :search
+    end
   end
 
   resources :photos do
@@ -20,5 +24,6 @@ PhotographerShare::Application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :favourites, only: [:create, :destroy]
   resources :tags, only: [:index]
+  resources :recommends, only: [:index]
 
 end

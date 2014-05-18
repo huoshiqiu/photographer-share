@@ -29,4 +29,16 @@ PhotographerShare::Application.configure do
 
   # devise
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  config.tags = {
+    'life' => '生活',
+    'nature' => '自然',
+    'fashion' => '流行',
+    'person' => '人物',
+    'time' => '时光',
+    'season' => '季节',
+    'animal' => '动物',
+    'builing' => '建筑',
+    'culture' => '文化'
+  }
 end

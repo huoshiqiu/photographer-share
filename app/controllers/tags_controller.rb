@@ -6,7 +6,7 @@ class TagsController < ApplicationController
     if @tag.nil?
       @tag_name = params[:name].to_s
     else
-      @special_tag_photos = @tag.photos
+      @special_tag_photos = @tag.photos.order('updated_at DESC')
     end
 
   end

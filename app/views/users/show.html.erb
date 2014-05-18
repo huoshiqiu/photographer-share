@@ -18,7 +18,7 @@
             <td>上次登录：<%= @user.last_sign_in_at.strftime("%Y-%m-%d %H:%M") %></td>
           </tr>
         <% end %>
-        <tr><td><%= render 'follow_form' %></td></tr>
+        <tr><td><%= render 'shared/follow_form' %></td></tr>
       </tbody>
     </table>
     <section>

@@ -2,16 +2,16 @@
   <% photos.each do |p| %>
     <div class="col-xs-6 .col-md-6">
       <div class="onePhoto thumbnail">
-        <h4><%= p.user.name %></h4>
+        <h4><%= link_to "#{p.user.name}", user_url(id: p.user.id) %></h4>
           <%=image_tag p.image_uid.url(:show_small_thumb) %>
 
         <div class="OtherPhotosButtons">
 <!--                    <a href="#" data-toggle="modal" data-target="#fav" data-type="edit" class="favButton">赞</a> -->
         <% if user_signed_in? && current_user.following?(p.user) %>
           <% if current_user.favourite?(p) %>
-            <%= render partial: 'unfavourite', locals: { photo: p } %>
+            <%= render partial: 'shared/unfavourite', locals: { photo: p } %>
           <% else %>
-            <%= render partial: 'favourite', locals: { photo: p } %>
+            <%= render partial: 'shared/favourite', locals: { photo: p } %>
           <% end %>
           <a href="#" data-toggle="modal" data-target="#show-<%= p.id %>" data-type="edit" class="commentButton">评论</a>
         <% else %>

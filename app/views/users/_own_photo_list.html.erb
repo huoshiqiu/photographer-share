@@ -51,7 +51,7 @@
                     <div><%= f.label '图片标签' %></div>
                     <% tags.each do |t| %>
                       <div class="col-md-4">
-                        <input <%= p.tags.include?(t) ? "checked='checked'" : "unchecked" %> type="checkbox" tag_id=<%= t.id %> name = <%= "photo[tags][#{t.id}]" %> value=<%= t.name %>><%= t.name %></input>
+                        <input <%= p.tags.include?(t) ? "checked='checked'" : "unchecked" %> type="checkbox" tag_id=<%= t.id %> name = <%= "photo[tags][#{t.id}]" %> value=<%= t.name %>><%= PhotographerShare::Application.config.tags[t.name] %></input>
                       </div>
                     <% end %>
                     <div>

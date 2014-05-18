@@ -18,7 +18,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    redirect_to current_user if current_user.update_attributes user_params
+    if current_user.update_attributes user_params
+      flash[:notice] = '个人资料更新成功！'
+      redirect_to current_user
+    else
+      flash[:notice] = '个人资料更新失败！'
+      redirect_to current_user
+    end
   end
 
   def following
@@ -33,6 +39,17 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @users = @user.followers.page params[:page]
     render 'show_followers'
+  end
+
+  def search
+    user = User.find_by(name: params[:user_name])
+
+    if user.nil?
+      flash[:noitce] = '没有找到该用户'
+      redirect_to root_path
+    else
+      redirect_to user_path(id: user.id)
+    end
   end
 
   private

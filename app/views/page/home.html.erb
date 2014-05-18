@@ -1,6 +1,6 @@
 <h3>最近更新图片：</h3>
 <div class="myPhotoCarousel">
-  <% @photos.each do |photo| %>
+  <% @last_updated_photos.each do |photo| %>
     <div>
       <%= image_tag photo.image_uid.url(:show_small_thumb) %>
     </div>
@@ -14,15 +14,20 @@
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">已有标签 <span class="caret"></span></button>
         <ul class="dropdown-menu">
         <% @tags.each do |tag| %>
-          <li><a href="<%= tags_path(tag_name: tag.name) %>"><%= tag.name %></a></li>
+          <li><a href="<%= tags_path(tag_name: tag.name) %>"><%= PhotographerShare::Application.config.tags[tag.name] %></a></li>
         <% end %>
         </ul>
       </div><!-- /btn-group -->
       <%= form_tag(tags_path, method: 'get') do %>
-        <input type="text" name='tag_name' class="form-control" onchange='this.form.submit()'>
+        <input type="text" name='tag_name' class="form-control" onchange='this.form.submit()' placeholder="输入你喜爱的标签按回车">
       <% end %>
     </div><!-- /input-group -->
   </div><!-- /.col-lg-6 -->
 </div>
-<h4><%= @tags.first.name %></h4>
-<%= render :partial => "users/photos_show", :locals => { photos: @photos } %>
+<% @tags.each do |tag| %>
+  <% unless tag.photos.blank? %>
+    <h4><%= link_to "#{PhotographerShare::Application.config.tags[tag.name]}", tags_path(tag_name: tag.name)%></h4>
+      <%= render :partial => "shared/index_photos", :locals => {
+        photos: tag.photos.order('updated_at DESC').limit(3) } %>
+  <% end %>
+<% end %>

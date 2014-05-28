@@ -1,16 +1,16 @@
 <h2>Change your password</h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'smallForm' }) do |f| %>
   <%= devise_error_messages! %>
   <%= f.hidden_field :reset_password_token %>
 
-  <div><%= f.label :password, "New password" %><br />
-    <%= f.password_field :password, autofocus: true, autocomplete: "off" %></div>
+  <div><%= f.label '新密码' %><br />
+    <%= f.password_field :password, autofocus: true, autocomplete: "off", class: 'form-control' %></div>
 
-  <div><%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+  <div><%= f.label '确认新密码' %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %></div>
 
-  <div><%= f.submit "Change my password" %></div>
+  <div><%= f.submit "修改我的密码", class: 'btn btn-primary' %></div>
 <% end %>
 
 <%= render "users/shared/links" %>

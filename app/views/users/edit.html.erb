@@ -1,14 +1,14 @@
-<h2>Edit</h2>
-
+<div class='smallForm'>
 <%= form_for(current_user, url: user_path, html: { method: :put }) do |f| %>
 
   <div><%= f.label '名字' %><br />
-  <%= f.text_field :name, autofocus: true %></div>
+  <%= f.text_field :name, autofocus: true, class: "form-control" %></div>
 
   <div><%= f.label '电话' %><br />
-  <%= f.text_field :phone, autofocus: true %></div>
+  <%= f.text_field :phone, autofocus: true, class: "form-control" %></div>
 
-  <div><%= f.submit "更新" %></div>
+  <div><%= f.submit "更新", class: 'btn btn-primary' %></div>
 <% end %>
 
 <%= link_to "返回", :back %>
+</div>
